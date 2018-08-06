@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Action Coeur de Ville</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    
+	 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="//cdn.leafletjs.com/leaflet-0.7.2/leaflet.ie.css" /><![endif]-->
+
+    <link rel="stylesheet" href="src/leaflet-sidebar.css" />
+
+	<style>
+
+		body {
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body, #mapid {
+            height: 100%;
+            font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
+        }
+
+        .lorem {
+            font-style: italic;
+            color: #1d1d1b;
+			em:1.2;
+        }
+		
+		.presentation {
+			display: block;
+		}
+		
+		#popup {
+			display: none;
+		}
+		
+		h1{
+			em:2;
+			color:#fab511;
+			text-align:center;
+		}
+	
+		h2{
+			em:1.8;
+			color: #1d1d1b;
+		}
+
+
+</style>
+</head>
+
+<body>
+    <div id="sidebar" class="sidebar collapsed">
+        <!-- Nav tabs -->
+        <div class="sidebar-tabs">
+            <ul role="tablist">
+                <li><a href="#home" role="tab" id="logo_acv"><i class="fa"><img src="img/logo_acv2.png" style="width:30px;padding:5px"  /></i></a></li>
+                <li><a href="http://www.cget.gouv.fr/dossiers/action-coeur-de-ville" role="tab" target="_blank" title="Site officiel"><i class="fa fa-home"></i></a></li>
+            </ul>
+        </div>
+
+        <!-- Tab panes -->
+        <div class="sidebar-content">
+            <div class="sidebar-pane" id="home">
+                <h1 class="sidebar-header">
+                    Action cœur de ville
+                    <span class="sidebar-close" id="close"><i class="fa fa-caret-left"></i></span>
+                </h1>
+				
+				<div class="presentation" id="defaut">
+					<div><img src="img/logo_acv_420.png" style="max-width:80%" /></div>
+					<h1>222 villes bénéficiaires du plan Action Cœur de ville</h1>
+					<h2>Un plan en faveur des centre villes</h2>
+					<p class="lorem">Les centres villes, dans leur grande diversité, ont tous en commun de porter l’identité de leur territoire.<br/>Les évolutions qu’on y observe depuis quelques années sont parfois spectaculaires, tout particulièrement sur le plan du commerce, de l’habitat et de la précarisation de la population.<br/>Pour permettre à ces villes de retrouver un meilleur équilibre, pour redonner attractivité et dynamisme à leurs centres, le Gouvernement a décidé de lancer un plan en faveur des villes de rayonnement régional.</p>
+					<h2>Un contrat qui inclut toutes les parties prenantes</h2>
+					<p class="lorem">Le soutien de l’État se formalisera par un contrat cadre qui engagera la commune, son intercommunalité et les partenaires du plan.</p>
+					<p class="lorem">Le contrat intègrera toutes les démarches en cours d’élaboration : c’est aussi un contrat de simplification.</p>
+					<p class="lorem">Il s’agit d’un contrat « sur-mesure » qui devra répondre de façon concrète aux enjeux locaux et aux besoins exprimés par la population et les entreprises.</p>
+				</div>
+
+				<div id="popup">
+				   <h1 id="libgeo"></h1>
+
+					<p class="lorem">Région :</p> <p id="region"></p> 
+					
+				</div>
+				
+            </div>
+
+            <div class="sidebar-pane" id="profile">
+                <h1 class="sidebar-header">Profile<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+            </div>
+
+        </div>
+    </div>
+
+
+	<div id="mapid" class="sidebar-map"></div>
+	
+     <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"></script>
+    <script src="https://turbo87.github.io/sidebar-v2/js/leaflet-sidebar.js"></script>
+	<script type="text/javascript" src="data/masque.js"></script>
+	<script type="text/javascript" src="data/departements.js"></script>
+	<script type="text/javascript" src="data/regions.js"></script>
+	<script type="text/javascript" src="data/coeurdeville.js"></script>
+	<script type="text/javascript" src="data/zau.js"></script>
+	
+    <script>
+		
+			
+		// Création de la carte
+		var map = L.map('mapid', {maxZoom:10, minZoom:6
+		//maxBounds: [
+        //south west
+        //[39, -18],
+        //north east
+        //[54, 12]
+        //], 
+		})
+		.setView([46.5, 2], 6);
+		map.zoomControl.setPosition('topright');
+		
+		//Définition des pictos
+		var LeafIcon = L.Icon.extend({
+		options: {
+			//shadowUrl: 'img/shadow.png',
+			//shadowSize:   [23, 45],
+			//shadowAnchor: [0, 0],
+			//iconSize:     [25, 25],
+			//iconAnchor:   [0, 0],
+			//popupAnchor:  [0, -30]
+		}
+		});
+		var uncheckedIcon_off = new LeafIcon({iconUrl: 'img/pictos_unchecked_off.png', iconSize: [24,24], iconAnchor:[12,12]}),
+			checkedIcon_off = new LeafIcon({iconUrl: 'img/pictos_checked_off.png', iconSize: [24,24], iconAnchor:[12,12]}),
+			uncheckedIcon_on = new LeafIcon({iconUrl: 'img/pictos_unchecked_on.png', iconSize: [33,33], iconAnchor:[16.5,16.5]}),
+			checkedIcon_on = new LeafIcon({iconUrl: 'img/pictos_checked_on.png', iconSize: [33,33], iconAnchor:[16.5,16.5]});
+
+		// Choix du fond de carte 
+		var GeoportailFrance_parcels = L.tileLayer('https://wxs.ign.fr/{apikey}/geoportail/wmts?REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&STYLE={style}&TILEMATRIXSET=PM&FORMAT={format}&LAYER=CADASTRALPARCELS.PARCELS&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}', {
+		//attribution: '<a target="_blank" href="https://www.geoportail.gouv.fr/">Geoportail France</a>',
+		//bounds: [[-75, -180], [81, 180]],
+		//minZoom: 5,
+		//maxZoom: 10,
+		apikey: 'choisirgeoportail',
+		format: 'image/png',
+		style: 'bdparcellaire'
+		});
+		GeoportailFrance_parcels.addTo(map);
+		/*var BasemapAT_basemap = L.tileLayer('https://maps{s}.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.{format}', {
+		maxZoom: 20,
+		attribution: 'Datenquelle: <a href="https://www.basemap.at">basemap.at</a>',
+		subdomains: ["", "1", "2", "3", "4"],
+		format: 'png',
+		bounds: [[46.35877, 8.782379], [49.037872, 17.189532]]
+		});*/
+		
+		
+		//function getColor(propriete){
+		//console.log(propriete);
+		//return "weight": 0, "opacity": 1, fillOpacity: 1, fillColor:
+		//return "#ffb80e";
+		//}
+		
+		//Ajout des couches		
+		Cache = L.geoJSON(JS_masque, {color: "#fdece3", weight: 0, opacity: 1, fillOpacity: 1}).addTo(map);
+		Fond_Regions = L.geoJSON(JS_reg, {weight: 0, opacity: 1, fillOpacity: 1, fillColor:"#ffc20e"}).addTo(map);
+		
+		ZAU = L.geoJSON(JS_zau, {
+			style: function(feature){
+				if (feature.properties.FIRST_TYPO=="120"){
+					return {opacity: 1, fillOpacity: 1, weight: 0, color:"#ffb80e"};
+			}
+				else if (feature.properties.FIRST_TYPO=="112"){
+					return {opacity: 1, fillOpacity: 1, weight: 0, color:"#ffae0e"};
+			}
+				else if (feature.properties.FIRST_TYPO=="111"){
+					return {opacity: 1, fillOpacity: 1, weight: 0, color:"#ffa40e"};
+			}
+			}
+		})
+		.addTo(map);
+		
+		Contour_Regions = L.geoJSON(JS_reg, {color: "#ffffff", weight: 2, opacity: 1, fillOpacity: 0}).addTo(map);
+		Departements = L.geoJSON(JS_dep, {color: "#ffffff", weight: 1, opacity: 1, fillOpacity: 0}).addTo(map);
+		
+		
+		var test;
+		
+		function infos(e) {
+		if (document.getElementById('sidebar').classList.contains('collapsed')){
+		sidebar.open('home');
+		
+		if (map.getZoom() < 8) {map.setView([46.5, -3], 6);}}
+		//console.log(ACV_checked);
+		//e.target._icon.src = "http://localhost/acv/img/unchecked.png" ;
+		if(test){test.setIcon(checkedIcon_off)};
+		test = e.target;
+		test.setIcon(checkedIcon_on);
+		document.getElementById('popup').style.display = "block";
+		document.getElementById('defaut').style.display = "none";
+		document.getElementById('libgeo').innerHTML = e.target.feature.properties.NOM_COMM_1;
+		document.getElementById('region').innerHTML = e.target.feature.properties.NOM_REGION;
+		}
+		
+		var sidebar = L.control.sidebar('sidebar').addTo(map);
+		
+		
+		ACV_checked = L.geoJSON(JS_coeurdeville, {
+				pointToLayer: function(feature, latlng) {
+				//if (feature.properties.VILLE_DA_1 == "NON"){
+				return L.marker(latlng,{icon:checkedIcon_off}).on('click', function(e) { infos(e);})
+				//}
+				//else {return L.marker(latlng, {icon: uncheckedIcon_off} )};
+				},
+		}).addTo(map)
+				
+		
+		//Events au clic sur la carte
+		map.on('click', function(e) {   
+			if (document.getElementById('sidebar').classList.contains('collapsed')) {
+				sidebar.open('home');
+			}
+			else {
+				sidebar.close();
+				map.setView([46.5, 2], 6);
+			}
+			document.getElementById('popup').style.display = "none";
+			document.getElementById('defaut').style.display = "block";   
+		});
+		
+		//Carte qui bouge à l'ouverture de la popup
+		document.getElementById("logo_acv").addEventListener("click", function(){
+		if(map.getZoom() < 8){
+		if (document.getElementById('sidebar').classList.contains('collapsed')) {
+		map.panTo([46.5, 2],{duration: 0.5 });}
+		else {map.panTo([46.5, -3],{duration: 0.5 });}
+		}
+		});
+
+		document.getElementById("close").addEventListener("click", function(){
+		if(map.getZoom() < 8){
+		if (document.getElementById('sidebar').classList.contains('collapsed') && map.getZoom() < 8) {
+		map.panTo([46.5, 2],{duration: 0.5 });}
+		else {map.panTo([46.5, -3],{duration: 0.5 });}
+		}
+		}); 		
+
+   </script>
+	
+</body>
+
+
+
+</html>
