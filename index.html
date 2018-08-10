@@ -66,7 +66,7 @@
         <!-- Tab panes -->
         <div class="sidebar-content">
             <div class="sidebar-pane" id="home">
-                <h1 class="sidebar-header">
+                <h1 style="text-transform:uppercase" class="sidebar-header">
                     Action cœur de ville
                     <span class="sidebar-close" id="close"><i class="fa fa-caret-left"></i></span>
                 </h1>
@@ -83,10 +83,11 @@
 				</div>
 
 				<div id="popup">
-				   <h1 id="libgeo"></h1>
-
-					<p class="lorem">Région :</p> <p id="region"></p> 
-					
+					<h1 id="libgeo"></h1>
+					<p class="lorem" id="region"></p>
+					<p class="lorem" id="signature"></p>
+					<p class="lorem" id="action"></p>					
+					<p class="lorem" id="projet"></p>
 				</div>
 				
             </div>
@@ -108,12 +109,13 @@
 	<script type="text/javascript" src="data/regions.js"></script>
 	<script type="text/javascript" src="data/coeurdeville.js"></script>
 	<script type="text/javascript" src="data/zau.js"></script>
+	<script type="text/javascript" src="data/cercles_drom.js"></script>
 	
     <script>
 		
 			
 		// Création de la carte
-		var map = L.map('mapid', {maxZoom:10, minZoom:6
+		var map = L.map('mapid', {maxZoom:8, minZoom:6
 		//maxBounds: [
         //south west
         //[39, -18],
@@ -135,8 +137,8 @@
 			//popupAnchor:  [0, -30]
 		}
 		});
-		var uncheckedIcon_off = new LeafIcon({iconUrl: 'img/pictos_unchecked_off.png', iconSize: [24,24], iconAnchor:[12,12]}),
-			checkedIcon_off = new LeafIcon({iconUrl: 'img/pictos_checked_off.png', iconSize: [24,24], iconAnchor:[12,12]}),
+		var uncheckedIcon_off = new LeafIcon({iconUrl: 'img/pictos_unchecked_off.png', iconSize: [17,17], iconAnchor:[8.5,8.5]}),
+			checkedIcon_off = new LeafIcon({iconUrl: 'img/pictos_checked_off.png', iconSize: [19,19], iconAnchor:[9.5,9.5]}),
 			uncheckedIcon_on = new LeafIcon({iconUrl: 'img/pictos_unchecked_on.png', iconSize: [33,33], iconAnchor:[16.5,16.5]}),
 			checkedIcon_on = new LeafIcon({iconUrl: 'img/pictos_checked_on.png', iconSize: [33,33], iconAnchor:[16.5,16.5]});
 
@@ -168,6 +170,7 @@
 		
 		//Ajout des couches		
 		Cache = L.geoJSON(JS_masque, {color: "#fdece3", weight: 0, opacity: 1, fillOpacity: 1}).addTo(map);
+		Cercles_drom = L.geoJSON(JS_drom, {color: "#ffffff", weight: 2, opacity: 0.7, fillOpacity: 0}).addTo(map);
 		Fond_Regions = L.geoJSON(JS_reg, {weight: 0, opacity: 1, fillOpacity: 1, fillColor:"#ffc20e"}).addTo(map);
 		
 		ZAU = L.geoJSON(JS_zau, {
@@ -191,32 +194,71 @@
 		
 		var test;
 		
+		//Action au clic sur un marker
 		function infos(e) {
-		if (document.getElementById('sidebar').classList.contains('collapsed')){
-		sidebar.open('home');
-		
-		if (map.getZoom() < 8) {map.setView([46.5, -3], 6);}}
-		//console.log(ACV_checked);
-		//e.target._icon.src = "http://localhost/acv/img/unchecked.png" ;
-		if(test){test.setIcon(checkedIcon_off)};
-		test = e.target;
-		test.setIcon(checkedIcon_on);
-		document.getElementById('popup').style.display = "block";
-		document.getElementById('defaut').style.display = "none";
-		document.getElementById('libgeo').innerHTML = e.target.feature.properties.NOM_COMM_1;
-		document.getElementById('region').innerHTML = e.target.feature.properties.NOM_REGION;
+			//ouverture de la sidebar
+			if (document.getElementById('sidebar').classList.contains('collapsed')){
+				sidebar.open('home');
+				if (map.getZoom() < 8) {map.setView([46.5, -3], 6);}
+				}
+			
+			//Modification de l'icone
+			if(test) {
+				if (test.feature.properties.categorie == "sig"){test.setIcon(checkedIcon_off);}
+				else {test.setIcon(uncheckedIcon_off);}
+			}
+			test = e.target;
+			if (test.feature.properties.categorie == "sig"){test.setIcon(checkedIcon_on);}
+			else {test.setIcon(uncheckedIcon_on);}
+			
+			//Remplissage de la popup
+			document.getElementById('popup').style.display = "block";
+			document.getElementById('defaut').style.display = "none";
+			document.getElementById('libgeo').innerHTML = test.feature.properties.NOM_COM+" ("+test.feature.properties.dep+")";
+			document.getElementById('region').innerHTML = "Région "+test.feature.properties.NOM_REGION;
+			
+			if (test.feature.properties.DATE_SIGN !== "indefini" && test.feature.properties.categorie == "sig" ) {
+				document.getElementById('signature').innerHTML = "Date de la signature : <strong>"+test.feature.properties.DATE_SIGN+"</strong>";
+				}
+			else {document.getElementById('signature').innerHTML = "";}
+			
+			if (test.feature.properties.ACTION) {console.log(test.feature.properties.ACTION); document.getElementById('action').innerHTML = "<strong>"+test.feature.properties.ACTION+"</strong> actions matures engagées dès 2018";}
+			else {document.getElementById('action').innerHTML = "";}
+			
+			if (test.feature.properties.PROJET) {document.getElementById('projet').innerHTML = "Projet de cœur de ville en cours : <br/><a href=\'"+test.feature.properties.INTERNET+"/' target=\'_blank\' style=\'text-decoration:none; color:#ffc20e\'><strong>"+test.feature.properties.PROJET+"</strong></a>";}
+			else {document.getElementById('projet').innerHTML = "";}
 		}
 		
 		var sidebar = L.control.sidebar('sidebar').addTo(map);
 		
 		
+		/*ACV = L.geoJSON(JS_coeurdeville, {
+				pointToLayer: function(feature, latlng) {
+					if (feature.properties.categorie == "non" || feature.properties.categorie == "ind"){
+						return L.marker(latlng,{icon:uncheckedIcon_off}).on('click', function(e) {infos(e);})
+						}
+					else {
+						return L.marker(latlng,{icon:checkedIcon_off}).on('click', function(e) {infos(e);})
+						}
+				},
+		}).addTo(map)*/
+		
+		ACV_unchecked = L.geoJSON(JS_coeurdeville, {
+				pointToLayer: function(feature, latlng) {
+					return L.marker(latlng,{icon:uncheckedIcon_off}).on('click', function(e) {infos(e);})	
+					},
+				filter: function(feature, layer) {
+					return feature.properties.categorie == "non" || feature.properties.categorie == "ind" ;
+					}
+		}).addTo(map)
+		
 		ACV_checked = L.geoJSON(JS_coeurdeville, {
 				pointToLayer: function(feature, latlng) {
-				//if (feature.properties.VILLE_DA_1 == "NON"){
-				return L.marker(latlng,{icon:checkedIcon_off}).on('click', function(e) { infos(e);})
-				//}
-				//else {return L.marker(latlng, {icon: uncheckedIcon_off} )};
-				},
+					return L.marker(latlng,{icon:checkedIcon_off}).on('click', function(e) {infos(e);})	
+					},
+				filter: function(feature, layer) {
+					return feature.properties.categorie == "sig" ;
+					}
 		}).addTo(map)
 				
 		
