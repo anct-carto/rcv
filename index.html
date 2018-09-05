@@ -16,17 +16,18 @@
 
 		body {
             padding: 0;
-            margin: 0;
+            margin-right: auto;
+			margin-left:auto;
         }
 
         html, body, #mapid {
             height: 100%;
             font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
+			color: #1d1d1b;
         }
 
         .lorem {
-            font-style: italic;
-            color: #1d1d1b;
+            padding-left:10px;
 			em:1.2;
         }
 		
@@ -38,15 +39,21 @@
 			display: none;
 		}
 		
+		strong{
+		color:#d11558;
+		em:1.6;
+		Font-Weight: Bold;
+		}
+		
 		h1{
 			em:2;
 			color:#fab511;
-			text-align:center;
 		}
 	
 		h2{
 			em:1.8;
-			color: #1d1d1b;
+			color:#1d1d1b;
+			padding-top:25px;
 		}
 
 
@@ -60,6 +67,7 @@
             <ul role="tablist">
                 <li><a href="#home" role="tab" id="logo_acv"><i class="fa"><img src="img/logo_acv2.png" style="width:30px;padding:5px"  /></i></a></li>
                 <li><a href="http://www.cget.gouv.fr/dossiers/action-coeur-de-ville" role="tab" target="_blank" title="Site officiel"><i class="fa fa-home"></i></a></li>
+				<li><a href="http://www.cget.gouv.fr/dossiers/action-coeur-de-ville" role="tab" target="_blank" title="Télécharger la carte"><i class="fa fa-download"></i></a></li>
             </ul>
         </div>
 
@@ -72,14 +80,22 @@
                 </h1>
 				
 				<div class="presentation" id="defaut">
-					<div><img src="img/logo_acv_420.png" style="max-width:80%" /></div>
-					<h1>222 villes bénéficiaires du plan Action Cœur de ville</h1>
-					<h2>Un plan en faveur des centre villes</h2>
-					<p class="lorem">Les centres villes, dans leur grande diversité, ont tous en commun de porter l’identité de leur territoire.<br/>Les évolutions qu’on y observe depuis quelques années sont parfois spectaculaires, tout particulièrement sur le plan du commerce, de l’habitat et de la précarisation de la population.<br/>Pour permettre à ces villes de retrouver un meilleur équilibre, pour redonner attractivité et dynamisme à leurs centres, le Gouvernement a décidé de lancer un plan en faveur des villes de rayonnement régional.</p>
-					<h2>Un contrat qui inclut toutes les parties prenantes</h2>
-					<p class="lorem">Le soutien de l’État se formalisera par un contrat cadre qui engagera la commune, son intercommunalité et les partenaires du plan.</p>
-					<p class="lorem">Le contrat intègrera toutes les démarches en cours d’élaboration : c’est aussi un contrat de simplification.</p>
-					<p class="lorem">Il s’agit d’un contrat « sur-mesure » qui devra répondre de façon concrète aux enjeux locaux et aux besoins exprimés par la population et les entreprises.</p>
+					<div><img src="img/logo_acv_420.png" style="max-width:60%; padding:25px;" /></div>
+					<h1>222 territoires bénéficiaires</h1>
+					<p class="lorem"><img src="img/pictos_checked_off.png" style="vertical-align:center;width:20px;padding:0px 10px;"  />Ville retenue : contrat signé</p>
+					<p class="lorem"><img src="img/pictos_unchecked_off.png" style="vertical-align:center;width:20px;padding:0px 10px;"  />Ville retenue : contrat non signé</p>
+					<h2>Agir sur les centres-villes au service des territoires </h2>
+					<p class="lorem">Le plan « Action Cœur de Ville » est <strong>un grand plan d’investissement public sur cinq ans</strong> (2018-2022) à destination des 222 villes intermédiaires qui structurent le territoire national. Il cible plus spécifiquement leurs centres-villes, qui rayonnent sur de larges bassins de vie.</p>
+					<p class="lorem">A des degrés divers, ces territoires sont confrontés à la dévitalisation de leurs centres, à la mesure du déclin démographique, de la dégradation de l’offre d’habitat et de la fuite des activités commerciales en périphérie notamment. « Action Cœur de Ville » apporte <strong>une réponse globale et transversale</strong>, à partir d’un projet porté par la collectivité, qui doit se construire autour de <strong>cinq axes :</p>
+					<p class="lorem">1. De la réhabilitation à la restructuration : vers une offre attractive de l’habitat en centre-ville</p>
+					<p class="lorem">2. Favoriser un développement économique et commercial équilibré</p>
+					<p class="lorem">3. Développer l’accessibilité, la mobilité et les connexions</p>
+					<p class="lorem">4. Mettre en valeur les formes urbaines, l’espace public et le patrimoine</p>
+					<p class="lorem">5. Fournir l’accès aux équipements, services publics, à l’offre culturelle et de loisirs</p></strong>
+					<h2>Un plan «sur-mesure» décentralisé et déconcentré</h2>
+					<p class="lorem"><strong>« Action Cœur de Ville » va jusqu’au bout de la logique de décentralisation et de déconcentration</strong>. Le soutien de l’État et des partenaires nationaux se formalise par la conclusion d’une convention-cadre pluriannuelle avec la commune et son intercommunalité.<br/><strong>Le cadre partenarial</strong> permet d’inclure à cette convention tout acteur public ou privé pouvant mettre ses moyens ou son expertise au service du cœur de ville : établissement public foncier, agence d’urbanisme, bailleur social, associations, entreprises…</p>
+					<p class="lorem"><strong>Les projets sont conçus par les collectivités</strong>, qui sollicitent les financements auprès des services déconcentrés de l’Etat et des partenaires, réunis dans un comité de projet présidé par le maire.</p>
+					<p class="lorem"><strong>Cette méthode «sur-mesure» permet d’accompagner les collectivités à leur rythme</strong>, de mettre en œuvre les actions déjà matures lors de la conclusion de la convention et de réaliser en même temps toutes les études nécessaires au projet de revitalisation du centre-ville.</p>
 				</div>
 
 				<div id="popup">
@@ -277,9 +293,12 @@
 		
 		//Carte qui bouge à l'ouverture de la popup
 		document.getElementById("logo_acv").addEventListener("click", function(){
+		document.getElementById('popup').style.display = "none";
+		document.getElementById('defaut').style.display = "block";
 		if(map.getZoom() < 8){
 		if (document.getElementById('sidebar').classList.contains('collapsed')) {
-		map.panTo([46.5, 2],{duration: 0.5 });}
+		//map.panTo([46.5, 2],{duration: 0.5 });
+		sidebar.open('home');}
 		else {map.panTo([46.5, -3],{duration: 0.5 });}
 		}
 		});
