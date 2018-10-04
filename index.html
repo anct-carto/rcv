@@ -39,6 +39,13 @@
 			display: none;
 		}
 		
+		.TooltipsNAT {
+		em:0.7;
+		font-weight: bold;
+		color: #ffa40e;
+		background-color: #fdece3;
+		}
+		
 		strong{
 		color:#d11558;
 		em:1.6;
@@ -269,6 +276,9 @@
 					},
 				filter: function(feature, layer) {
 					return feature.properties.categorie == "non" || feature.properties.categorie == "ind" ;
+					},
+				onEachFeature : function(feature, layer) {
+					layer.bindTooltip(feature.properties.NOM_COM, {className: 'TooltipsNAT', closeButton: false});
 					}
 		}).addTo(map)
 		
@@ -278,6 +288,9 @@
 					},
 				filter: function(feature, layer) {
 					return feature.properties.categorie == "sig" ;
+					},
+				onEachFeature : function(feature, layer) {
+					layer.bindTooltip(feature.properties.NOM_COM, {className: 'TooltipsNAT', closeButton: false});
 					}
 		}).addTo(map)
 				
