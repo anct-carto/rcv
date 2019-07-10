@@ -9,39 +9,85 @@ html, body, #mapid {
 	color: #1d1d1b;
     }
 
-.lorem {
-    padding-left:10px;
-	em:1.2;
-    }
+#logo{
+	height: 40px;
+}
+
+span {
+	color:#1a1a1a;
+}
+
+a {
+	font-size:1em;
+	text-decoration:none;
+	color:#d11558;
+}
+
+.onglets{
+	color:#d11558;
+}
+
+.onglets:hover{
+	background-color:#fff;
+}
 		
 .presentation {
 	display: block;
 	}
-		
+
+#sources {
+	margin-top: 50px;
+}
+	
 #popup {
 	display: none;
 	}
 		
-.TooltipsNAT {
-	em:0.7;
-	font-weight: bold;
-	color: #ffa40e;
+.Tooltips {
+	font-size:1.2em;
+	color: #1a1a1a;
 	background-color: #fdece3;
+	text-transform:uppercase;
+	Font-Weight: Bold;
 	}
 		
 strong{
 	color:#d11558;
-	em:1.6;
+	font-size:1.6em;
 	Font-Weight: Bold;
 	}
 		
 h1{
-	em:2;
-	color:#fab511;
+	font-size:2em;
+	color:#e51b48;
 	}
 	
 h2{
-	em:1.8;
-	color:#1d1d1b;
-	padding-top:25px;
+	font-size:1.2em;
+	color:#fab612;
 	}
+	
+h3{
+	font-size:1em;
+	color:#000;
+	}
+	
+/*Style du tableau*/
+	
+.divTable{
+	display: table;	
+}
+
+
+.divTableRow {
+	display: table-row;	
+}
+
+.divTableCell, .divTableHead {
+	vertical-align:middle;
+	padding: 5px 0px;
+}
+
+.divTableBody {
+	display: table-row-group;
+}

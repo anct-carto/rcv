@@ -38,7 +38,7 @@
   top: 0;
   bottom: 0;
   height: 100%;
-  background-color: #e09f9e; }
+  background-color: #ffde7d; }
   .sidebar-left .sidebar-tabs {
     left: 0; }
   .sidebar-right .sidebar-tabs {
@@ -51,16 +51,16 @@
     list-style-type: none; }
     .sidebar-tabs > li, .sidebar-tabs > ul > li {
       width: 100%;
-      color: #333;
+      color: #000;
       font-size: 12pt;
       overflow: hidden;
       transition: all 80ms; }
       .sidebar-tabs > li:hover, .sidebar-tabs > ul > li:hover {
         color: #000;
-        background-color: #fffff; }
+        background-color: #fff; }
       .sidebar-tabs > li.active, .sidebar-tabs > ul > li.active {
         color:  #000;
-        background-color: #ffffff; }
+        background-color: #ffde7d; }
       .sidebar-tabs > li.disabled, .sidebar-tabs > ul > li.disabled {
         color: rgba(51, 51, 51, 0.4); }
         .sidebar-tabs > li.disabled:hover, .sidebar-tabs > ul > li.disabled:hover {
@@ -81,7 +81,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  background-color: #bb5769;
+  background-color: #fff;
   overflow-x: hidden;
   overflow-y: auto; }
   .sidebar-left .sidebar-content {

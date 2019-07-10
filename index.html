@@ -17,58 +17,68 @@
 
 <body>
     <div id="sidebar" class="sidebar collapsed">
-        <!-- Nav tabs -->
-        <div class="sidebar-tabs">
-            <ul role="tablist">
-                <li><a href="#home" role="tab" id="logo_acv"><i class="fa"><img src="img/logo_acv2.png" style="width:30px;padding:5px"  /></i></a></li>
-                <li><a href="http://www.cget.gouv.fr/dossiers/action-coeur-de-ville" role="tab" target="_blank" title="Site officiel"><i class="fa fa-home"></i></a></li>
-				<li><a href="https://rawgit.com/cget-carto/c2v/master/img/ACV_CARTO_sept18.jpg" role="tab" target="_blank" title="Télécharger la carte"><i class="fa fa-download"></i></a></li>
-            </ul>
+		
+		<!-- Boutons de menu -->
+		<div class="sidebar-tabs" id="barre-verticale">
+            <ul role="tablist" >
+                <li><a href="#home" role="tab" id="logo" title="Retour à l'accueil" class="onglets"><img src="img/logo_acv2.png" style="width:30px;padding:5px"  /></a></li>
+				<li><a href="img/catalogue-laureat_complet.pdf" role="tab" target="_blank" title="Télécharger le catalogue" class="onglets"><i style="vertical-align:middle;" class="fa fa-download"></i></a></li>
+			</ul>
         </div>
 
-        <!-- Tab panes -->
+                <!-- Contenu des onglets -->
         <div class="sidebar-content">
             <div class="sidebar-pane" id="home">
-                <h1 style="text-transform:uppercase" class="sidebar-header">
-                    Réinventons nos cœurs de ville
-                    <span class="sidebar-close" id="close"><i class="fa fa-caret-left"></i></span>
+                
+				<h1>&laquo; Réinventons</br>nos c&#156;urs de ville &raquo;
+				<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
 				
+				<!-- Page d'accueil -->
 				<div class="presentation" id="defaut">
-					<div><img src="img/logo_acv_420.png" style="max-width:60%; padding:25px;" /></div>
-					<h1>222 territoires bénéficiaires</h1>
-					<p class="lorem"><img src="img/pictos_checked_off.png" style="vertical-align:center;width:20px;padding:0px 10px;"  />Ville retenue : contrat signé</p>
-					<p class="lorem"><img src="img/pictos_unchecked_off.png" style="vertical-align:center;width:20px;padding:0px 10px;"  />Ville retenue : contrat non signé</p>
-					<h2>Agir sur les centres-villes au service des territoires </h2>
-					<p class="lorem">Le plan « Action Cœur de Ville » est <strong>un grand plan d’investissement public sur cinq ans</strong> (2018-2022) à destination des 222 villes intermédiaires qui structurent le territoire national. Il cible plus spécifiquement leurs centres-villes, qui rayonnent sur de larges bassins de vie.</p>
-					<p class="lorem">A des degrés divers, ces territoires sont confrontés à la dévitalisation de leurs centres, à la mesure du déclin démographique, de la dégradation de l’offre d’habitat et de la fuite des activités commerciales en périphérie notamment. « Action Cœur de Ville » apporte <strong>une réponse globale et transversale</strong>, à partir d’un projet porté par la collectivité, qui doit se construire autour de <strong>cinq axes :</p>
-					<p class="lorem">1. De la réhabilitation à la restructuration : vers une offre attractive de l’habitat en centre-ville</p>
-					<p class="lorem">2. Favoriser un développement économique et commercial équilibré</p>
-					<p class="lorem">3. Développer l’accessibilité, la mobilité et les connexions</p>
-					<p class="lorem">4. Mettre en valeur les formes urbaines, l’espace public et le patrimoine</p>
-					<p class="lorem">5. Fournir l’accès aux équipements, services publics, à l’offre culturelle et de loisirs</p></strong>
-					<h2>Un plan «sur-mesure» décentralisé et déconcentré</h2>
-					<p class="lorem"><strong>« Action Cœur de Ville » va jusqu’au bout de la logique de décentralisation et de déconcentration</strong>. Le soutien de l’État et des partenaires nationaux se formalise par la conclusion d’une convention-cadre pluriannuelle avec la commune et son intercommunalité.<br/><strong>Le cadre partenarial</strong> permet d’inclure à cette convention tout acteur public ou privé pouvant mettre ses moyens ou son expertise au service du cœur de ville : établissement public foncier, agence d’urbanisme, bailleur social, associations, entreprises…</p>
-					<p class="lorem"><strong>Les projets sont conçus par les collectivités</strong>, qui sollicitent les financements auprès des services déconcentrés de l’Etat et des partenaires, réunis dans un comité de projet présidé par le maire.</p>
-					<p class="lorem"><strong>Cette méthode «sur-mesure» permet d’accompagner les collectivités à leur rythme</strong>, de mettre en œuvre les actions déjà matures lors de la conclusion de la convention et de réaliser en même temps toutes les études nécessaires au projet de revitalisation du centre-ville.</p>
-				
-				<br/>
-					<p><i>Sources : <a href="http://www.cget.gouv.fr/" style="text-decoration:none;" target="_blanck ">CGET</a> • Réalisation : <a href="http://www.cget.gouv.fr/ressources/cartotheque" style="text-decoration:none;" target="_blanck ">CGET service cartographie</a> • Dernière mise à jour : 01 octobre 2018</i></p>
-				
-				</div>
-
-				<div id="popup">
-					<h1 id="libgeo"></h1>
-					<p class="lorem" id="region"></p>
-					<p class="lorem" id="signature"></p>
-					<p class="lorem" id="action"></p>					
-					<p class="lorem" id="projet"></p>
+					<div>
+						<h2>Carte interactive des sites</h2>
+						<p><span>ICI</span>, possibilité de mettre un texte introductif de présentation</p>
+						
+					</div>
+					
+					<div id="sources" style="width:70%;">
+						<p><i>Sources&nbsp;: <a href="https://www.cget.gouv.fr/dossiers/action-coeur-de-ville" target="_blank">CGET</a> • Réalisation&nbsp;: <a href="https://cartotheque.cget.gouv.fr/cartes?filters%5Bquery%5D=interactif&current_page=1&category=&page_size=20" target="_blank">CGET service cartographie</a></i></p>
+						<p><img src="img/cget.png" style="vertical-align:middle; width:100%;"/></p>
+					</div>
 				</div>
 				
-            </div>
-
-            <div class="sidebar-pane" id="profile">
-                <h1 class="sidebar-header">Profile<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+				<!-- Contenu de la fiche d'information -->
+				<div class="divTable" id="popup">
+					<div id="libgeo"></div>
+					<div style="text-transform:uppercase; font-size:2em; color:#fab612; font-weight:bold;" id="ville"></div>
+					<div style="font-size:1.5em; color:#fab612;" id="nom"></div>
+					<div style="margin-top:10px" id="dep"></div>
+					<div style="margin-top:10px;font-size:0.9em;" id="type"></div>
+					<div style="margin-top:15px;margin-bottom:15px;" id="lienBOX"><img src="img/picto_fleche.png" style="vertical-align:middle; width:20px;" /><span id="lien"></span></div>
+					<div style="margin-top:15px;margin-bottom:15px;" id="taquet"><img src="img/picto_taquet.png" style="vertical-align:middle; width:40px;" /></div>
+					<div class="divTableBody">
+					
+						<div class="divTableCell" id="orientationBOX">
+								<div class="divTableRow"><span style="text-transform:uppercase; font-size:1em; color:#ffffff; background-color:#d11558; padding:2px; ">Les Orientations programmatiques&nbsp;:</span></div>
+								<div class="" id="orientation" style="border:1px solid #d11558; padding:2px; "></div>
+						</div>
+						<div class="divTableCell" id="contactBOX">
+								<h3 class="divTableRow">Contact&nbsp;:</h3>
+								<div class="divTableRow" id="contact"></div>
+						</div>
+						<div class="divTableCell" id="foncierBOX">
+								<h3 class="divTableRow">Maîtrise foncière&nbsp;:</h3>
+								<div class="divTableRow" id="foncier"></div>
+						</div>
+						<div class="divTableCell" id="surfaceBOX">
+								<h3 class="divTableRow">Superficie (en m²)&nbsp;:</h3>
+								<div class="divTableRow" id="superficie"></div>
+						</div>
+					</div>
+					
+				</div>
+					
             </div>
 
         </div>
@@ -77,12 +87,13 @@
 
 	<div id="mapid"></div>
 	
-     <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"></script>
-    <script src="https://turbo87.github.io/sidebar-v2/js/leaflet-sidebar.js"></script>
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+    <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"></script>
+    <script src="src/leaflet-sidebar.js"></script>
+	<!--<script type="text/javascript" src='src/tabletop.min.js'></script>-->
 	<script type="text/javascript" src="data/masque.js"></script>
 	<script type="text/javascript" src="data/cercles_drom.js"></script>
 	<script type="text/javascript" src="data/toutesCouches.js"></script>
+	<script type="text/javascript" src="data/rcv.js"></script>
 	
     <script>
 		
@@ -95,7 +106,7 @@
 		
 		//Ajout de la sidebar
 		var sidebar = L.control.sidebar('sidebar').addTo(map);
-
+		sidebar.open('home');
 		
 /* COULEURS - STYLES - LEGENDE */
 		
@@ -104,12 +115,137 @@
 		options: {
 		}
 		});
-		var uncheckedIcon_off = new LeafIcon({iconUrl: 'img/pictos_unchecked_off.png', iconSize: [17,17], iconAnchor:[8.5,8.5]}),
-			checkedIcon_off = new LeafIcon({iconUrl: 'img/pictos_checked_off.png', iconSize: [19,19], iconAnchor:[9.5,9.5]}),
-			uncheckedIcon_on = new LeafIcon({iconUrl: 'img/pictos_unchecked_on.png', iconSize: [33,33], iconAnchor:[16.5,16.5]}),
-			checkedIcon_on = new LeafIcon({iconUrl: 'img/pictos_checked_on.png', iconSize: [33,33], iconAnchor:[16.5,16.5]});
+		var picto1_off = new LeafIcon({iconUrl: 'img/picto_1_off.png', iconSize: [19,19], iconAnchor:[9.5,9.5]}),
+			picto2_off = new LeafIcon({iconUrl: 'img/picto_2_off.png', iconSize: [20,20], iconAnchor:[10,10]}),
+			picto3_off = new LeafIcon({iconUrl: 'img/picto_3_off.png', iconSize: [12,12], iconAnchor:[6,6]}),
+			picto1_on = new LeafIcon({iconUrl: 'img/picto_1_on.png', iconSize: [33,33], iconAnchor:[16.5,16.5]}),
+			picto2_on = new LeafIcon({iconUrl: 'img/picto_2_on.png', iconSize: [33,33], iconAnchor:[16.5,16.5]}),
+			picto3_on = new LeafIcon({iconUrl: 'img/picto_3_on.png', iconSize: [33,33], iconAnchor:[16.5,16.5]});
+		
+		var picto_cible = new LeafIcon({iconUrl: 'img/picto_cible.png', iconSize: [36,36], iconAnchor:[18,18]});
 
-/* DONNEES DRIVE */
+		function createIcon(type, statut) {
+			if (statut=="off"){
+				if (type=='1') {return picto1_off;}
+				else if (type=='2') {return picto2_off;}
+				else {return picto3_off;}
+				}
+			else {
+				if (type=='1') {return picto1_on;}
+				else if (type=='2') {return picto2_on;}
+				else {return picto3_on;}
+			}
+		}
+		
+/* CREATION DES COUCHES */		
+		
+		//Niveaux d'affichage des couches
+		map.createPane('fond');
+		map.getPane('fond').style.zIndex = 500;
+		map.createPane('contour');
+		map.getPane('contour').style.zIndex = 500;
+		map.createPane('cercles');
+		map.getPane('cercles').style.zIndex = 510;
+		map.createPane('metro');
+		map.getPane('metro').style.zIndex = 520;
+		map.createPane('metCible2');
+		map.getPane('metCible2').style.zIndex = 525;
+		map.createPane('metCible');
+		map.getPane('metCible').style.zIndex = 530;
+		
+		//Couches du fond de carte
+		Cache = L.geoJSON(JS_masque, {color: "#fab612", weight: 0, opacity: 1, fillOpacity: 1}).addTo(map);
+		Cercles_drom = L.geoJSON(JS_drom, {color: "#ffffff", weight: 2, opacity: 0.7, fillOpacity: 0}).addTo(map);
+		
+		Fond_Regions = L.geoJSON(JS_tout, {
+			filter: function(feature, layer) {return feature.properties.type=="région"},
+			style : {weight: 0, opacity: 1, fillOpacity: 1, fillColor:"#e51b48", pane: "fond"}
+			}).addTo(map);
+		
+		Contour_Regions = L.geoJSON(JS_tout, {
+			filter: function(feature, layer) {return feature.properties.type=="région"},
+			style : {color: "#ffffff", weight: 2, opacity: 1, fillOpacity: 0, pane: "contour"}
+			}).addTo(map);
+		
+		Departements = L.geoJSON(JS_tout, {
+			filter: function(feature, layer) {return feature.properties.type=="départemen"},
+			style: {color: "#ffffff", weight: 1, opacity: 1, fillOpacity: 0, pane: "contour"}
+			}).addTo(map);
+		
+		ZAU = L.geoJSON(JS_tout, {
+			filter: function(feature, layer) {return feature.properties.type=="zau"},
+			style: function(feature){
+				if (feature.properties.codgeo=="120"){
+					return {opacity: 1, fillOpacity: 1, weight: 0, color:"#d61943", pane: "fond"};
+				}
+				else if (feature.properties.codgeo=="112"){
+					return {opacity: 1, fillOpacity: 1, weight: 0, color:"#c7183e", pane: "fond"};
+				}
+				else if (feature.properties.codgeo=="111"){
+					return {opacity: 1, fillOpacity: 1, weight: 0, color:"#b81638", pane: "fond"};
+				}
+				else {
+					return {opacity: 1, fillOpacity: 1, weight: 0, color:"#e51b48", pane: "fond"};
+				}
+			}
+		})
+		.addTo(map);
+		
+/* PROJETS */
+		
+		
+		
+		// Ajout des couches de point
+	
+		var Sites = [];
+		var projets1 = L.layerGroup({pane:'metro'}).addTo(map);
+		var projets2 = L.layerGroup({pane:'metro'}).addTo(map);
+		var projets3 = L.layerGroup({pane:'metro'}).addTo(map);
+	
+		function creationProjets() {
+		
+			Projets_dotation = L.geoJSON(JS_rcv, {
+				pointToLayer: function(feature, latlng) {
+					var marker = L.marker(latlng,{icon: createIcon(feature.properties.id_type,'off')});
+					marker.bindTooltip(feature.properties.lib_com, {className: 'Tooltips', closeButton: false, direction:'left', offset: [-10,0]});
+					marker.on('click', function(e){popup(e.target);markerCible(e.target) });
+					marker.on('mouseover', function(e){e.target.setIcon(createIcon(feature.properties.id_type, 'on' )); });
+					marker.on('mouseout', function(e){e.target.setIcon(createIcon(feature.properties.id_type, 'off')); });
+					
+					marker.properties = {};
+					marker.properties.insee_com = feature.properties.insee_com;
+					marker.properties.lib_com = feature.properties.lib_com;
+					marker.properties.lib_projet = feature.properties.lib_projet;
+					marker.properties.insee_dep = feature.properties.insee_dep;
+					marker.properties.lib_dep = feature.properties.lib_dep;
+					marker.properties.insee_reg = feature.properties.insee_reg;
+					marker.properties.lib_rcv = feature.properties.lib_rcv;
+					marker.properties.orientations = feature.properties.orientations;
+					marker.properties.contact_p = feature.properties.contact_p;
+					marker.properties.contact_n = feature.properties.contact_n;
+					marker.properties.contact_m = feature.properties.contact_m;
+					marker.properties.contact_t = feature.properties.contact_t;
+					marker.properties.url1 = feature.properties.url1;
+					marker.properties.url2 = feature.properties.url2;
+					marker.properties.foncier = feature.properties.foncier;
+					marker.properties.surface = feature.properties.surface;
+					marker.properties.type = feature.properties.type;
+					marker.properties.id_type = feature.properties.id_type;
+					
+					if (feature.properties.id_type == '1') {projets1.addLayer(marker);}
+					else if (feature.properties.id_type == '2') {projets2.addLayer(marker);}
+					else {projets3.addLayer(marker);}
+					
+				}
+				});
+		
+		}
+		
+		creationProjets();
+
+		
+		
+/* DONNEES DRIVE 
 			
 		//Ajout des données drive
 		var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/17Fj-vJg50BOjz5WLqhSy-BPdouadxqnCTM81OUiRJ6E/edit?usp=sharin';
@@ -128,94 +264,98 @@
 	
 		//Aller chercher les données et créer les markers
 		function showInfo(data, tabletop) {
-		
+			
 			for (var i in data){
-				
+
 				marker = new L.marker([data[i].LAT, data[i].LNG], {title: data[i].lib_com});
 				
-				if (data[i].ID_ASSO == 'AMF'){marker.setIcon(uncheckedIcon_off); marker.on('mouseover', function(e) {e.target.setIcon(uncheckedIcon_on); }); marker.on('mouseout', function(e) {e.target.setIcon(uncheckedIcon_off); });}
-				else if (data[i].ID_ASSO == 'ATMF'){marker.setIcon(checkedIcon_off); marker.on('mouseover', function(e) {e.target.setIcon(checkedIcon_on); }); marker.on('mouseout', function(e) {e.target.setIcon(checkedIcon_off); });}
-				else {marker.setIcon(checkedIcon_off); marker.on('mouseover', function(e) {e.target.setIcon(checkedIcon_on); }); marker.on('mouseout', function(e) {e.target.setIcon(checkedIcon_off); });}
+				if (data[i].ID_ASSO == 'AMF'){marker.setIcon(picto1_off); marker.on('mouseover', function(e) {e.target.setIcon(picto1_on); }); marker.on('mouseout', function(e) {e.target.setIcon(picto1_off); });}
+				else if (data[i].ID_ASSO == 'ATMF'){marker.setIcon(picto2_off); marker.on('mouseover', function(e) {e.target.setIcon(picto2_on); }); marker.on('mouseout', function(e) {e.target.setIcon(picto2_off); });}
+				else {marker.setIcon(picto3_off); marker.on('mouseover', function(e) {e.target.setIcon(picto3_on); }); marker.on('mouseout', function(e) {e.target.setIcon(picto3_off); });}
 				
 				marker.properties = {};
 				marker.properties.ID_ASSO = data[i].ID_ASSO;
 
 				marker.bindTooltip(data[i].ID_ASSO, {className: 'Tooltips', closeButton: false, offset: [0,-30]});
-				//marker.on('click', function(e) {popup(e.target); markerCible(e.target) });
+				marker.on('click', function(e) {popup(e.target); markerCible(e.target) });
 				
 				marker.addTo(markersLayer);
 				
 			}
 		}
 
-		window.addEventListener('DOMContentLoaded', init)
+		window.addEventListener('DOMContentLoaded', init)*/
+		
+		
+		
+		
+		//Action au clic sur un marker
+		function popup(e) {
+			//ouverture de la sidebar
+			if (document.getElementById('sidebar').classList.contains('collapsed')){
+				sidebar.open('home');
+				}
+			
+			//Remplissage de la popup
+			document.getElementById('popup').style.display = "block";
+			document.getElementById('defaut').style.display = "none";
+			
+			document.getElementById('ville').innerHTML = e.properties.lib_com;
+			
+			if (e.properties.url1 != 'non'){
+				document.getElementById('lienBOX').style.display = "block";
+				document.getElementById('lien').innerHTML = "<span><a href='"+e.properties.url1+"' target='blank'>Télécharger le dossier</a></span>";
+				}
+			else document.getElementById('lienBOX').style.display = "none";
+			
+			document.getElementById('nom').innerHTML = e.properties.lib_projet;
+			document.getElementById('type').innerHTML = "<span><i>"+e.properties.type+"</i></span>";
+			document.getElementById('dep').innerHTML = "<span>"+e.properties.lib_dep+" - "+e.properties.insee_dep+"</span>";
+			
+			if (e.properties.orientations != 'non'){
+				document.getElementById('orientationBOX').style.display = "block";
+				document.getElementById('orientation').innerHTML = "<span>"+e.properties.orientations+"</span>";
+				}
+			else document.getElementById('orientationBOX').style.display = "none";
+			
+			if (e.properties.contact_n != 'non'){
+				document.getElementById('contactBOX').style.display = "block";
+				document.getElementById('contact').innerHTML = "<span>"+e.properties.contact_p+" "+e.properties.contact_n+"</br>"+e.properties.contact_m+"</br>"+e.properties.contact_t+"</span>";
+				}
+			else document.getElementById('contactBOX').style.display = "none";
+			
+			if (e.properties.foncier != 'non'){
+				document.getElementById('foncierBOX').style.display = "block";
+				document.getElementById('foncier').innerHTML = "<span>"+e.properties.foncier+"</span>";
+				}
+			else document.getElementById('foncierBOX').style.display = "none";
+			
+			if (e.properties.surface != 'non'){
+				document.getElementById('surfaceBOX').style.display = "block";
+				document.getElementById('superficie').innerHTML = "<span>"+e.properties.surface+"</span>";
+				}
+			else document.getElementById('surfaceBOX').style.display = "none";
+			
+		}
+		
+		//Une cible sur le marker sélectionné
+		var markerCib;
+		function markerCible(e) {
+			if(markerCib) {map.removeLayer(markerCib);}
+			markerCib = new L.marker(new L.latLng(e._latlng), {icon: picto_cible, pane:"cercles"});
+			markerCib.setZIndexOffset(-50);
+			markerCib.addTo(map);
+		}
 	
-/* CREATION DES COUCHES */		
-		
-		//Niveaux d'affichage des couches
-		map.createPane('fond');
-		map.getPane('fond').style.zIndex = 500;
-		map.createPane('contour');
-		map.getPane('contour').style.zIndex = 500;
-		map.createPane('cercles');
-		map.getPane('cercles').style.zIndex = 510;
-		map.createPane('metro');
-		map.getPane('metro').style.zIndex = 520;
-		map.createPane('metCible2');
-		map.getPane('metCible2').style.zIndex = 525;
-		map.createPane('metCible');
-		map.getPane('metCible').style.zIndex = 530;
-		
-		//Couches du fond de carte
-		Cache = L.geoJSON(JS_masque, {color: "#fdece3", weight: 0, opacity: 1, fillOpacity: 1}).addTo(map);
-		Cercles_drom = L.geoJSON(JS_drom, {color: "#ffffff", weight: 2, opacity: 0.7, fillOpacity: 0}).addTo(map);
-		
-		Fond_Regions = L.geoJSON(JS_tout, {
-			filter: function(feature, layer) {return feature.properties.type=="région"},
-			style : {weight: 0, opacity: 1, fillOpacity: 1, fillColor:"#ffc20e", pane: "fond"}
-			}).addTo(map);
-		
-		Contour_Regions = L.geoJSON(JS_tout, {
-			filter: function(feature, layer) {return feature.properties.type=="région"},
-			style : {color: "#ffffff", weight: 2, opacity: 1, fillOpacity: 0, pane: "contour"}
-			}).addTo(map);
-		
-		Departements = L.geoJSON(JS_tout, {
-			filter: function(feature, layer) {return feature.properties.type=="départemen"},
-			style: {color: "#ffffff", weight: 1, opacity: 1, fillOpacity: 0, pane: "contour"}
-			}).addTo(map);
-		
-		ZAU = L.geoJSON(JS_tout, {
-			filter: function(feature, layer) {return feature.properties.type=="zau"},
-			style: function(feature){
-				if (feature.properties.codgeo=="120"){
-					return {opacity: 1, fillOpacity: 1, weight: 0, color:"#ffb80e", pane: "fond"};
-				}
-				else if (feature.properties.codgeo=="112"){
-					return {opacity: 1, fillOpacity: 1, weight: 0, color:"#ffae0e", pane: "fond"};
-				}
-				else if (feature.properties.codgeo=="111"){
-					return {opacity: 1, fillOpacity: 1, weight: 0, color:"#ffa40e", pane: "fond"};
-				}
-				else {
-					return {opacity: 1, fillOpacity: 1, weight: 0, color:"#ffc20e", pane: "fond"};
-				}
-			}
-		})
-		.addTo(map);
+
 				
 		
 		//Events au clic sur la carte
 		map.on('click', function(e) {   
-			if (document.getElementById('sidebar').classList.contains('collapsed')) {
-				sidebar.open('home');
-			}
-			else {
-				sidebar.close();
-				map.setView([46.5, 2], 6);
-			}
+			sidebar.open('home');
 			document.getElementById('popup').style.display = "none";
-			document.getElementById('defaut').style.display = "block";   
+			document.getElementById('defaut').style.display = "block";
+			map.setView([46.5, -1.8], 6);			
 		});
 		
 
