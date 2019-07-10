@@ -71,6 +71,12 @@ h3{
 	font-size:1em;
 	color:#000;
 	}
+
+#retour {
+	color:#e51b48;
+	font-size:1em;
+	cursor:pointer;
+}
 	
 /*Style du tableau*/
 	
@@ -91,3 +97,40 @@ h3{
 .divTableBody {
 	display: table-row-group;
 }
+
+/* Style des boutons */
+
+.button_container {
+	margin-top:25px;
+	}
+
+.bouton {
+	color: #1a1a1a;
+	font-weight: bold;
+	background-color: transparent;
+	border: none;
+	cursor:pointer;
+	padding:6px;
+	margin: 1px;
+	vertical-align: middle;
+	text-align: left;
+	border-radius: 4px;
+}
+
+.bouton_off {
+		color: #1a1a1a;
+		background-color: transparent;
+		}
+		
+.bouton:hover {
+	color: white;
+	background-color: #e51b48;
+	
+	}
+		
+
+.bouton_on {
+	color: #e51b48;
+	background-color: #e5e5e5;
+	
+	}
