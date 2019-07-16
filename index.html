@@ -7,6 +7,7 @@
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
     <link rel="shortcut icon" type="image/png" href="img/logo_acv2.png"/>
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="src/leaflet-search.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" />
 	<link rel="stylesheet" href="style.css" />
   
@@ -26,7 +27,7 @@
 			</ul>
         </div>
 
-                <!-- Contenu des onglets -->
+        <!-- Contenu des onglets -->
         <div class="sidebar-content">
             <div class="sidebar-pane" id="home">
                 
@@ -47,7 +48,7 @@
 						</div>
 							
 					</div>
-					
+						
 					<div style="margin-top:25px;">
 						<p>Dans le cadre du programme national <strong>Action Cœur de Ville</strong> dont bénéficient 222 villes qui exercent <strong>un rôle irremplaçable de centralité pour l’ensemble de leur territoire</strong>, le ministère de la Cohésion des territoires et des Relations avec les collectivités territoriales a lancé une consultation nationale « Réinventons nos cœurs de ville » proposant aux villes volontaires d’être soutenues pour mener un appel à projets urbain innovant.</p>
 						<p>Ce dispositif national a pour objectif de <strong>faciliter l’émergence de projets et de programmes urbains innovants en centre-ville</strong>, adaptés aux marchés et aux besoins locaux, favorisant la transition écologique et l’inclusion sociale et valorisant le patrimoine architectural, paysager et urbain.</p>
@@ -103,6 +104,8 @@
     <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"></script>
     <script src="src/leaflet-sidebar.js"></script>
 	<script type="text/javascript" src='src/tabletop.min.js'></script>
+	 <script type="text/javascript" src= "src/recherche.js"></script>
+	 <script type="text/javascript" src="src/leaflet-search.js"></script>
 	<script type="text/javascript" src="data/masque.js"></script>
 	<script type="text/javascript" src="data/cercles_drom.js"></script>
 	<script type="text/javascript" src="data/toutesCouches.js"></script>
@@ -123,7 +126,7 @@
 		sidebar.open('home');
 		
 		//Ajout des données drive
-		var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/17hogov5H-OxeUN_54EmdBPHSOMC7ChVB5IoL_eZ7wMA/edit?usp=drivesdk';
+		var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1KE_K39SrSI41oU4YZ39wXuSE2hdzVfdlMWk6wdGQ6GE/edit?usp=sharing';
 		
 		function init() {
 			Tabletop.init({ 
@@ -398,6 +401,30 @@
 		map.on('click', function(e) {   
 			reset();			
 		});
+		
+/*BARRE DE RECHERCHE */
+
+		var Recherche = L.layerGroup([projets1, projets2, projets3]);
+		
+		var searchControl = new L.control.search({
+			layer: Recherche,
+			initial: false,
+			position:'topright',
+			propertyName: 'lib_com',
+			collapsed: true,
+			marker: false,
+			moveToLocation: function(latlng, title, map) {
+				map.flyTo(latlng, 10);
+			}
+		})
+		
+		searchControl.on('search:locationfound', function(e) {
+			if(markerCible) {map.removeLayer(markerCible);}
+			markerCible(e.layer);
+			popup(e.layer);
+		});
+		
+		map.addControl(searchControl);
 		
 
    </script>
