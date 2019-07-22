@@ -69,7 +69,8 @@
 					<div style="font-size:1.5em; color:#fab612;" id="nom"></div>
 					<div style="margin-top:10px" id="dep"></div>
 					<div style="margin-top:10px;font-size:0.9em;" id="type"></div>
-					<div style="margin-top:15px;margin-bottom:15px;" id="lienBOX"><img src="img/picto_fleche.png" style="vertical-align:middle; width:20px;" /><span id="lien"></span></div>
+					<div style="margin-top:15px;" id="lienBOX"><img src='img/picto_fleche.png' style='vertical-align:middle; width:15px; padding-right:3px;' /><span id="lien"></span></div>
+					<div style="margin-bottom:15px;" id="lienBOX2"><img src='img/picto_fleche.png' style='vertical-align:middle; width:15px; padding-right:3px;' /><span id="lien2"></span></div>
 					<div style="margin-top:15px;margin-bottom:15px;" id="taquet"><img src="img/picto_taquet.png" style="vertical-align:middle; width:40px;" /></div>
 					<div class="divTableBody">
 					
@@ -104,8 +105,7 @@
     <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"></script>
     <script src="src/leaflet-sidebar.js"></script>
 	<script type="text/javascript" src='src/tabletop.min.js'></script>
-	 <script type="text/javascript" src= "src/recherche.js"></script>
-	 <script type="text/javascript" src="src/leaflet-search.js"></script>
+	<script type="text/javascript" src="src/leaflet-search.js"></script>
 	<script type="text/javascript" src="data/masque.js"></script>
 	<script type="text/javascript" src="data/cercles_drom.js"></script>
 	<script type="text/javascript" src="data/toutesCouches.js"></script>
@@ -230,8 +230,10 @@
 		function showInfo(data, tabletop) {
 			
 			for (var i in data){
-
+				//console.log(data[i]);
+				//console.log(data[i].lat+"-"+data[i].lng+"-"+data[i].lib_com);
 				marker = new L.marker([data[i].lat, data[i].lng],{icon: createIcon(data[i].id_type,'off')});
+				
 				marker.bindTooltip(data[i].lib_com, {className: 'Tooltips', closeButton: false, direction:'left', offset: [-10,0]});
 				marker.on('click', function(e){popup(e.target); markerCible(e.target) });
 				
@@ -292,9 +294,15 @@
 			
 			if (e.properties.url1 != 'non'){
 				document.getElementById('lienBOX').style.display = "block";
-				document.getElementById('lien').innerHTML = "<span><a href='"+e.properties.url1+"' target='blank'>Télécharger le dossier</a></span>";
+				document.getElementById('lien').innerHTML = "<span><a href='"+e.properties.url1+"' target='blank'>Télécharger le dossier ville</a></span>";
 				}
 			else document.getElementById('lienBOX').style.display = "none";
+			
+			if (e.properties.url2 != 'non'){
+				document.getElementById('lienBOX2').style.display = "block";
+				document.getElementById('lien2').innerHTML = "<span><a href='"+e.properties.url2+"' target='blank'>Voir le site officiel</a></span>";
+				}
+			else document.getElementById('lienBOX2').style.display = "none";
 			
 			document.getElementById('nom').innerHTML = e.properties.lib_projet;
 			document.getElementById('type').innerHTML = "<span><i>"+e.properties.type+"</i></span>";
