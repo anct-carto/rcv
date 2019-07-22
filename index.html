@@ -31,20 +31,28 @@
         <div class="sidebar-content">
             <div class="sidebar-pane" id="home">
                 
-				<h1>&laquo; Réinventons</br>nos c&#156;urs de ville &raquo;
-				<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
-                </h1>
+				<div style="vertical-align :middle;">
+				<img src="img/logo_acv_420.png" style="width:25%;  " />
 				
+				<div style="width:75%;">
+					<h1>&laquo; Réinventons</br>nos c&#156;urs de ville &raquo;<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>	
+				</div>
+
+				</div>
+				
+
 				<!-- Page d'accueil -->
 				<div class="presentation" id="defaut">
-					<div>
-						<h2>Carte interactive des sites</h2>
+					<div style="">
+						
+						<h2 style="">Carte interactive des sites</h2>
 						
 						<div class="button_container" id="filtres">
+							
 							<div ><button class="bouton_off bouton" onclick="filtrer('0')" title="toutes les catégories" id="CHECKtout" ><i>Voir toutes les catégories</i></button></div>
-							<div ><button class="bouton_off bouton" onclick="filtrer('1'); couleurBoutons('CHECK1');" title="Appel à projet en cours" id="CHECK1"><img id="picto1" src="img/picto_1_off.png" style="width:22px; padding-right:10px;" />Appel à projet en cours</button></div>
-							<div ><button class="bouton_off bouton" onclick="filtrer('2'); couleurBoutons('CHECK2');" title="Ville prête à lancer son appel à projet" id="CHECK2" ><img id="picto2" src="img/picto_2_off.png" style="width:20px; padding-right:10px;" />Ville prête à lancer son appel à projet</button></div>
-							<div ><button class="bouton_off bouton" onclick="filtrer('3'); couleurBoutons('CHECK3');" title="Ville sélectionnée dans le cadre de Réinventons nos cœurs de ville" id="CHECK3" ><img id="picto3" src="img/picto_3_off.png" style="width:17px; padding-right:10px;" />Ville sélectionnée dans le cadre de &laquo;Réinventons nos cœurs de ville&raquo;</button></div>
+							<div ><button class="bouton_off bouton" onclick="filtrer('1'); couleurBoutons('CHECK1');" title="Appel à projet en cours" id="CHECK1"><img id="picto1" src="img/picto_1_off.png" style="width:22px; padding-right:10px; text-align:center;" />Appel à projet en cours</button></div>
+							<div ><button class="bouton_off bouton" onclick="filtrer('2'); couleurBoutons('CHECK2');" title="Ville prête à lancer son appel à projet" id="CHECK2" ><img id="picto2" src="img/picto_2_off.png" style="width:20px; padding-right:10px;text-align:center;" />Ville prête à lancer son appel à projet</button></div>
+							<div ><button class="bouton_off bouton" onclick="filtrer('3'); couleurBoutons('CHECK3');" title="Ville sélectionnée dans le cadre de Réinventons nos cœurs de ville" id="CHECK3" ><img id="picto3" src="img/picto_3_off.png" style="width:17px; padding-right:10px;text-align:center;" />Ville sélectionnée dans le cadre de &laquo;Réinventons nos cœurs de ville&raquo;</button></div>
 						</div>
 							
 					</div>
@@ -56,9 +64,20 @@
 						<p>Cette carte interactive vous permet de <strong>suivre en temps réel l’avancée des 112 projets des villes sélectionnées</strong>. En cliquant sur chaque ville, découvrez le site et les orientations programmatiques proposés par la collectivité. Vous pouvez également télécharger une fiche synthétique de présentation pour chaque ville.</p>
 					</div>
 					
-					<div id="sources" style="width:70%;">
+					<div id="sources" style="width:90%;">
 						<p><i>Sources&nbsp;: <a href="https://www.cget.gouv.fr/dossiers/action-coeur-de-ville" target="_blank">CGET</a> • Réalisation&nbsp;: <a href="https://cartotheque.cget.gouv.fr/cartes?filters%5Bquery%5D=interactif&current_page=1&category=&page_size=20" target="_blank">CGET service cartographie</a></i></p>
-						<p><img src="img/cget.png" style="vertical-align:middle; width:100%;"/></p>
+						<p><img src="img/cget.png" style="vertical-align:middle; width:80%;"/></p>
+						
+						<p><i>Partenaires :</i></br>
+							<img src="img/logo-al_rvb-01.png" style="width:170px; padding:6px; float:left;"/>
+							<img src="img/logo_bdt.png" style="width:160px; padding:6px; float:right;"/>
+							<img src="img/logo_anah.png" style="width:100px; padding:6px;float:left;"/>
+							
+							<img src="img/Logo_epareca.jpg" style="width:120px; padding:6px; float:right;"/>
+							<img src="img/logo-cerema-2.jpg" style="width:150px; padding:6px;float:left;"/>
+							<img src="img/Capa.jpg" style="width:150px; padding:6px; float:right;"/>
+							<img src="img/logo-puca-jpg_1385393602719-OK.jpg" style="width:140px; padding:6px;float:left;"/>
+						</p>
 					</div>
 				</div>
 				
@@ -294,13 +313,13 @@
 			
 			if (e.properties.url1 != 'non'){
 				document.getElementById('lienBOX').style.display = "block";
-				document.getElementById('lien').innerHTML = "<span><a href='"+e.properties.url1+"' target='blank'>Télécharger le dossier ville</a></span>";
+				document.getElementById('lien').innerHTML = "<span><a href='"+e.properties.url1+"' target='blank'>Télécharger la fiche de site</a></span>";
 				}
 			else document.getElementById('lienBOX').style.display = "none";
 			
 			if (e.properties.url2 != 'non'){
 				document.getElementById('lienBOX2').style.display = "block";
-				document.getElementById('lien2').innerHTML = "<span><a href='"+e.properties.url2+"' target='blank'>Voir le site officiel</a></span>";
+				document.getElementById('lien2').innerHTML = "<span><a href='"+e.properties.url2+"' target='blank'>Télécharger le dossier le dossier de canditure</a></span>";
 				}
 			else document.getElementById('lienBOX2').style.display = "none";
 			

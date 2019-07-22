@@ -60,11 +60,13 @@ strong{
 h1{
 	font-size:2em;
 	color:#e51b48;
+	margin:4px;
 	}
 	
 h2{
 	font-size:1.2em;
 	color:#fab612;
+	margin-bottom:20px;
 	}
 	
 h3{
@@ -101,7 +103,11 @@ h3{
 /* Style des boutons */
 
 .button_container {
-	margin-top:25px;
+	border:solid 1px #ffa40e; 
+	border-radius: 4px;
+	width:95%;
+	
+	
 	}
 
 .bouton {
