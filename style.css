@@ -17,6 +17,10 @@ span {
 	color:#1a1a1a;
 }
 
+img{
+	vertical-align:middle;
+}
+
 a {
 	font-size:1em;
 	text-decoration:none;
